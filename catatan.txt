@@ -1,0 +1,4 @@
+mongo --quiet -u "user yang mau digunakan" -p
+ExtraSuperUser		root
+SuperUser		readWriteAnyDatabase
+Root 			role: 'readWrite', db: 'latihan'

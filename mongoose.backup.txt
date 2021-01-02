@@ -1,0 +1,60 @@
+//import file wajib
+const mongoose = require("mongoose");
+// untuk import file tambahan
+
+//untuk codding
+//membuat koneksi ke mongo db
+mongoose.connect(
+  "mongodb://ExtraSuperUser:Dausganteng12@localhost:27017?authSource=admin",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
+//membuat schema collection quotes
+// const quoteSchema = new mongoose.Schema({
+//   word: String,
+// });
+//membuat schema collection products
+const productsSchema = new mongoose.Schema({
+  name: String,
+  price: Number,
+  stock: Number,
+  status: { type: Boolean, default: true },
+});
+
+//membuat model untuk schema quotes
+const Product = mongoose.model("Products", productsSchema);
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error: "));
+db.once("open", async () => {
+  //   console.log("Server database Connect!");
+  //membuat quote baru
+  //   const quote = new Quote({
+  //     word: "Besar Pasak dari tiang",
+  //   });
+  //membuat product baru
+  const product = new Product({
+    name: "Earphone Stand",
+    price: 1000000,
+    stock: 100,
+    status: true,
+  });
+
+  //   //Menyimpan quote
+  //   quote.save((error, quote) => {
+  //     if (error) return console.error(error);
+  //     console.log(quote);
+  //   });
+  //Menyimpan product
+  product.save((error, product) => {
+    if (error) return console.error(error);
+    console.log(product);
+  });
+});
+//untuk menjalankan aplikasi
+// module.exports =
+
+//lanjut materi Mengenal Model & Document
+//GWSS
